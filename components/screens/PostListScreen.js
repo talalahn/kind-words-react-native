@@ -3,7 +3,7 @@ import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
 import { Button, FlatList, StyleSheet, View } from 'react-native';
 import { colors } from '../../styles/constants';
-import { loadPosts } from '../../utils/store';
+import { addPost, loadPosts } from '../../utils/store';
 import Header from '../Header';
 import PostList from '../PostItem';
 
@@ -13,9 +13,7 @@ export default ({ navigation }) => {
   const [posts, setPosts] = useState([]);
   useFocusEffect(() => {
     loadPosts().then((loadedPosts) => {
-      if (loadedPosts) {
-        setPosts(loadedPosts);
-      }
+      setPosts(loadedPosts);
     });
   });
 
@@ -25,29 +23,6 @@ export default ({ navigation }) => {
     setPosts(loadedPosts);
   };
 
-  // const [posts, setPosts] = useState([
-  //   {
-  //     sender: 'Ramon',
-  //     handle: 'hola_soy_milk',
-  //     body: "You're awesome!",
-  //     createdAt: new Date(),
-  //   },
-  //   {
-  //     sender: 'Pearl',
-  //     handle: 'punk_rock_swords',
-  //     body: 'Affluent!',
-  //     createdAt: new Date(),
-  //   },
-  //   {
-  //     sender: 'Garnet',
-  //     handle: 'stronger_than_u',
-  //     body: 'An experience!',
-  //     createdAt: new Date(),
-  //   },
-  // ]);
-  // const onNewPost = (newPost) => {
-  //   setPosts([...posts, newPost]);
-  // };
   return (
     <View style={styles.container}>
       <StatusBar
